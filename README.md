@@ -1,5 +1,6 @@
 # Project 3: Spots
 
+## Description 
 This is the third project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the figma design brief. This is an image sharing site that works great on all devices. 
 
 
@@ -21,7 +22,9 @@ This is the third project of the Software Engineering program at TripleTen. It w
   
 **Figma**  
   
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
+  This webpage is deployed to github pages. 
+
+* Deployment link: 
   
 **Images**  
   
