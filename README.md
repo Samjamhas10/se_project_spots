@@ -1,6 +1,6 @@
 # Project 3: Spots
 
-This is the third project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the figma design brief.
+This is the third project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the figma design brief. This is an image sharing site that works great on all devices. 
 
 
 ### Overview  
