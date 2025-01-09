@@ -29,6 +29,11 @@ This is the third project of the Software Engineering program at TripleTen. It w
   
 **Images**  
   
-![Val](tinified.zip) 
+![Val](images/1-photo-by-moritz-feldmann-from-pexels.jpg)
+![Project](images/Screenshot .png)
 
+
+**Project Video**
+
+https://www.loom.com/share/abb517ce18e94cc28e7db3f33cb54c29
 
