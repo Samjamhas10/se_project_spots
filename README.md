@@ -30,8 +30,6 @@ This is the third project of the Software Engineering program at TripleTen. It w
 **Images**  
   
 ![Val](images/1-photo-by-moritz-feldmann-from-pexels.jpg)
-![Project](images/Screenshot.png)
-
 
 **Project Video**
 
