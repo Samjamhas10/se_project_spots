@@ -26,6 +26,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   line-clamp: 3;
+  display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
@@ -37,10 +38,15 @@
   text-overflow: ellipsis;
   overflow: hidden;
   line-clamp: 3;
+  display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
   opacity: 0.7;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #212121;
 }
 
 .profile__edit-btn {
@@ -129,6 +135,5 @@
 
   .profile__add-btn-text {
     line-height: 16px;
-    height: 15px;
   }
 }
