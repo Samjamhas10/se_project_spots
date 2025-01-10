@@ -25,7 +25,7 @@ This is the third project of the Software Engineering program at TripleTen. It w
   
 - This webpage is deployed to github pages. 
 
-* Deployment link: https://github.com/Samjamhas10/se_project_spots
+* Deployment link: https://samjamhas10.github.io/se_project_spots/
   
 **Images**  
   
