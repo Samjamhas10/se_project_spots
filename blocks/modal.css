@@ -75,9 +75,15 @@
   background-color: transparent;
   cursor: pointer;
   color: #212121;
+  background-image: url("../images/Close-icon.svg");
+  opacity: 0.4;
 }
 
-.modal__close_type_preview {
+.modal__close-btn:hover {
+  opacity: 1;
+}
+
+.modal__close-btn_type_preview {
   background-image: url("../images/close-light.svg");
   top: -4px;
   right: -48px;
@@ -87,8 +93,8 @@
   position: absolute;
 }
 
-.modal__close_type_preview:hover {
-  opacity: 1;
+.modal__close-btn_type_preview:hover {
+  opacity: 0.4;
 }
 
 .modal__title {
@@ -125,6 +131,10 @@
   border: 1px solid rgba(33, 33, 33, 0.4);
 }
 
+.modal__input:hover {
+  border: 1px solid #212121;
+}
+
 .modal__submit-btn {
   width: 156px;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
@@ -148,10 +158,7 @@
     padding: 22px 12px 12px 12px;
   }
 
-  .modal__image {
-    max-width: 288px;
-    border-radius: 4px;
-  }
+  
 
   .modal__caption {
     font-size: 16px;
@@ -168,6 +175,11 @@
     right: 12px;
   }
 
+  .modal__close-btn_type_preview {
+    top: -47px;
+    right: 0;
+  }
+
   .modal__label {
     margin-bottom: 24px;
     gap: 8px;
@@ -181,4 +193,11 @@
   .modal__submit-btn {
     width: 100%;
   }
+}
+
+@media screen and (max-width: 360px) {
+    .modal__image {
+      max-width: 288px;
+      border-radius: 4px;
+    }
 }

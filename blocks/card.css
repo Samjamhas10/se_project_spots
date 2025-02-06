@@ -59,7 +59,6 @@
 .card__delete-btn {
   background-image: url(../images/delete-button.svg);
   background-color: transparent;
-  opacity: 0.6;
   position: absolute;
   top: 15px;
   right: 15px;    
