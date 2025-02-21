@@ -39,6 +39,10 @@
   display: block;
 }
 
+.modal__image-link {
+  opacity: 0.7;
+}
+
 .modal__caption {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
@@ -55,9 +59,13 @@
   position: absolute;
 }
 
+.modal__label-caption {
+  opacity: 0.7;
+}
+
 .modal__container {
   background-color: #fff;
-  padding: 36px 50px 32px;
+  padding: 32px 50px;
   max-width: 730px;
   width: 100%;
   box-sizing: border-box;
@@ -98,7 +106,7 @@
 }
 
 .modal__title {
-  margin: 0 0 36px;
+  margin: 0 0 27px;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 32px;
@@ -110,11 +118,19 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
-  margin-bottom: 32px;
+  margin-bottom: 38px;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: #212121;
+  position: relative;
+}
+
+.modal__label-title {
+  opacity: 0.7;
+}
+
+.modal__description {
   opacity: 0.7;
 }
 
@@ -131,8 +147,33 @@
   border: 1px solid rgba(33, 33, 33, 0.4);
 }
 
+.modal__input::placeholder {
+  opacity: 0.3;
+}
+
 .modal__input:hover {
   border: 1px solid #212121;
+}
+
+.modal__error {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17.6px;
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  color: #ff0000;
+  opacity: 0.7;
+  top: calc(100% + 2px);
+}
+
+.modal__error_visible {
+  visibility: visible;
+}
+
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
 }
 
 .modal__submit-btn {
@@ -149,6 +190,18 @@
   box-sizing: border-box;
 }
 
+.modal__submit-btn:hover {
+  opacity: 0.8;
+}
+
+.modal__submit-btn_disabled {
+  gap: 8px;
+  margin-top: 22px;
+  border-radius: 8px;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 627px) {
   .modal {
     padding: 0 10px;
@@ -157,8 +210,6 @@
   .modal__container {
     padding: 22px 12px 12px 12px;
   }
-
-  
 
   .modal__caption {
     font-size: 16px;
@@ -181,7 +232,6 @@
   }
 
   .modal__label {
-    margin-bottom: 24px;
     gap: 8px;
   }
 
@@ -192,12 +242,17 @@
 
   .modal__submit-btn {
     width: 100%;
+    padding: 18px 118px;
+  }
+
+  .modal__error {
+    margin-bottom: 24px;
   }
 }
 
 @media screen and (max-width: 360px) {
-    .modal__image {
-      max-width: 288px;
-      border-radius: 4px;
-    }
+  .modal__image {
+    max-width: 288px;
+    border-radius: 4px;
+  }
 }

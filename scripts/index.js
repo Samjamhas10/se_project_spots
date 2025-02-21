@@ -1,3 +1,5 @@
+// TODO - pass settings object to the validation functions that are called in this file
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -26,10 +28,13 @@ const initialCards = [
   },
 ];
 
+// Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardModalButton = document.querySelector(".profile__add-btn-text");
 const profileName = document.querySelector(".profile__name");
 const jobElement = document.querySelector(".profile__description");
+
+// Edit form elements
 const editModal = document.querySelector("#edit-modal");
 const editFormElement = editModal.querySelector(".modal__form");
 const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
@@ -38,20 +43,28 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
+// Card form elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardFormElement = cardModal.querySelector(".modal__form");
+const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
-const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector(".cards__list");
+
+// Preview image popup elements
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
-
 const modalCloseTypePreview = previewModal.querySelector(
   ".modal__close-btn_type_preview"
 );
+
+// Card related elements
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
+
+const modals = document.querySelectorAll(".modal");
+
 modalCloseTypePreview.addEventListener("click", () => {
   closeModal(previewModal);
 });
@@ -89,28 +102,39 @@ function getCardElement(data) {
   return cardElement;
 }
 
+// close Escape key
+
+function handlePressEsc(evt) {
+  if (evt.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
+    if (modal) {
+      closeModal(modal);
+    }
+  }
+}
+
 function openModal(modal) {
+  document.addEventListener("keydown", handlePressEsc);
   modal.classList.add("modal_opened");
 }
 
 function closeModal(modal) {
+  document.removeEventListener("keydown", handlePressEsc);
   modal.classList.remove("modal_opened");
+}
+
+function renderCard(cardData, placement = "prepend") {
+  const cardElement = getCardElement(cardData);
+  cardsList[placement](cardElement);
 }
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
- renderCard(inputValues);
+  renderCard(inputValues);
   closeModal(cardModal);
-
-   cardFormElement.reset()
-}
-
-function renderCard(cardData, placement = "prepend"){
-  const cardElement = getCardElement(cardData);
-  cardsList[placement](cardElement);
- 
+  disableButton(cardSubmitBtn, settings);
+  cardFormElement.reset();
 }
 
 function handleEdtFormSubmit(evt) {
@@ -118,12 +142,25 @@ function handleEdtFormSubmit(evt) {
   profileName.textContent = editModalNameInput.value;
   jobElement.textContent = editModalDescriptionInput.value;
   closeModal(editModal);
+  evt.target.reset();
+  editFormElement.reset();
 }
 
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = jobElement.textContent;
   openModal(editModal);
+});
+
+//close modal overlay
+
+modals.forEach((modal) => {
+  modal.addEventListener("click", (evt) => {
+    const activeModal = document.querySelector(".modal_opened");
+    if (evt.target.classList.contains("modal_opened")) {
+      closeModal(activeModal);
+    }
+  });
 });
 
 // click the close button on the edit profile modal to close that modal
@@ -144,5 +181,5 @@ cardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((item) => {
   console.log(item);
-  renderCard(item, "append")
+  renderCard(item, "append");
 });
