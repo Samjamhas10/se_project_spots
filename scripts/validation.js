@@ -8,12 +8,12 @@ const settings = {
 };
 
 // Show input error
-const showInputError = (formEl, inputEl, errorMsg) => {
+const showInputError = (formEl, inputEl, errorMsg, config) => {
   const errorElementId = `#${inputEl.id}-error`;
   const errorMsgEl = formEl.querySelector(errorElementId);
-  inputEl.classList.add(settings.inputErrorClass);
+  inputEl.classList.add(config.inputErrorClass);
   errorMsgEl.textContent = errorMsg;
-  errorMsgEl.classList.add(settings.errorClass);
+  errorMsgEl.classList.add(config.errorClass);
 };
 
 // Hide input error
@@ -48,6 +48,13 @@ const toggleButtonState = (inputList, buttonEl) => {
     buttonEl.disabled = false;
     buttonEl.classList.remove(settings.inactiveButtonClass);
   }
+};
+
+// add resetValidation
+const resetValidation = (formEl, inputEl, config) => {
+  inputEl.forEach((input) => {
+    hideInputError(formEl, input, config);
+  });
 };
 
 // Disable submit button

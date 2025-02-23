@@ -142,23 +142,25 @@ function handleEdtFormSubmit(evt) {
   profileName.textContent = editModalNameInput.value;
   jobElement.textContent = editModalDescriptionInput.value;
   closeModal(editModal);
-  evt.target.reset();
-  editFormElement.reset();
 }
 
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = jobElement.textContent;
   openModal(editModal);
+  resetValidation(
+    editFormElement,
+    [editModalNameInput, editModalDescriptionInput],
+    settings
+  );
 });
 
 //close modal overlay
 
 modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
-    const activeModal = document.querySelector(".modal_opened");
     if (evt.target.classList.contains("modal_opened")) {
-      closeModal(activeModal);
+      closeModal(modal);
     }
   });
 });
