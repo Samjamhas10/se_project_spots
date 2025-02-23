@@ -17,19 +17,19 @@ const showInputError = (formEl, inputEl, errorMsg, config) => {
 };
 
 // Hide input error
-const hideInputError = (formEl, inputEl) => {
+const hideInputError = (formEl, inputEl, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
-  inputEl.classList.remove(settings.inputErrorClass);
-  errorMsgEl.classList.remove(settings.errorClass);
+  inputEl.classList.remove(config.inputErrorClass);
+  errorMsgEl.classList.remove(config.errorClass);
   errorMsgEl.textContent = "";
 };
 
 // Check validity of input
-const checkInputValidity = (formEl, inputEl) => {
+const checkInputValidity = (formEl, inputEl, config) => {
   if (!inputEl.validity.valid) {
-    showInputError(formEl, inputEl, inputEl.validationMessage);
+    showInputError(formEl, inputEl, inputEl.validationMessage, config);
   } else {
-    hideInputError(formEl, inputEl);
+    hideInputError(formEl, inputEl, config);
   }
 };
 
@@ -64,15 +64,15 @@ const disableButton = (buttonEl) => {
 };
 
 // Add event listeners to inputs
-const setEventListeners = (formEl) => {
+const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
   const buttonElement = formEl.querySelector(settings.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, config);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formEl, inputElement);
+      checkInputValidity(formEl, inputElement, config);
       toggleButtonState(inputList, buttonElement);
     });
   });
@@ -81,7 +81,7 @@ const setEventListeners = (formEl) => {
 const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formEl) => {
-    setEventListeners(formEl);
+    setEventListeners(formEl, config);
   });
 };
 
