@@ -31,7 +31,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
-  cursor: pointer; 
+  cursor: pointer;
+  visibility: visible;
 }
 
 .card__footer {
@@ -52,8 +53,9 @@
 }
 
 .card__like-btn_liked:hover {
-  background-image: url(../images/like-active-hover_svg);
+  background-image: url(../images/like-icon-liked.svg);
   visibility: visible;
+  opacity: 0.5;
 }
 
 .card__delete-btn {
@@ -61,8 +63,8 @@
   background-color: transparent;
   position: absolute;
   top: 15px;
-  right: 15px;    
-  color: #FFFFFF; 
+  right: 15px;
+  color: #ffffff;
   cursor: pointer;
 }
 

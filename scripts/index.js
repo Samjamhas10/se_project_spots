@@ -28,7 +28,7 @@ const initialCards = [
 
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
-const cardModalButton = document.querySelector(".profile__add-btn-text");
+const cardModalButton = document.querySelector(".profile__add-btn");
 const profileName = document.querySelector(".profile__name");
 const jobElement = document.querySelector(".profile__description");
 
