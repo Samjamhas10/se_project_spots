@@ -6,19 +6,22 @@
     <meta name="description" content="brb" />
     <meta name="author" content="SamSam Hashi" />
     <meta name="keywords" content="Spots project" />
-    <link rel="stylesheet" href="pages/index.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spot logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Spot logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Bessie Coleman"
             class="profile__avatar"
           />
@@ -26,11 +29,14 @@
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
             <button type="button" class="profile__edit-btn">
-              <img src="./images/pencil.svg" alt="Pencil icon" />Edit Profile
+              <img
+                src="<%=require('./images/pencil.svg')%>"
+                alt="Pencil icon"
+              />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
-            <img src="./images/plus.svg" alt="Plus icon" /><span
+            <img src="<%=require('./images/plus.svg')%>" alt="Plus icon" /><span
               class="profile__add-btn-text"
               >New Post</span
             >
@@ -42,7 +48,7 @@
               <li class="card">
                 <div class="card__content">
                   <img
-                    src="./images/delete-button.svg"
+                    src="<%=require('./images/delete-button.svg')%>"
                     alt="delete button"
                     class="card__delete-btn"
                   />
@@ -168,7 +174,5 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-    <script defer src="./scripts/validation.js"></script>
-    <script defer src="./scripts/index.js"></script>
   </body>
 </html>

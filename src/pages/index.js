@@ -1,3 +1,12 @@
+import "./index.css";
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  disableButton,
+} from "../scripts/validation.js";
+import Api from "../utils/Api.js";
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -25,6 +34,24 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "166c6acc-ad57-4210-878a-b822a32c3faa",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((item) => {
+      console.log(item);
+      renderCard(item, "append");
+    });
+  })
+  .catch(console.error);
 
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -179,7 +206,4 @@ cardModalCloseBtn.addEventListener("click", () => {
 editFormElement.addEventListener("submit", handleEdtFormSubmit);
 cardFormElement.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach((item) => {
-  console.log(item);
-  renderCard(item, "append");
-});
+enableValidation(settings);
