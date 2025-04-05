@@ -43,13 +43,24 @@ const api = new Api({
   },
 });
 
+// Destructure the second item in the callback of the .then()
+
 api
-  .getInitialCards()
-  .then((cards) => {
+  .getAppInfo()
+  .then(([userInfo, cards]) => {
+    console.log("User Info:", userInfo);
     cards.forEach((item) => {
       console.log(item);
       renderCard(item, "append");
     });
+
+    // Handle the user's information
+    // - set the src of the avatars image
+    // - set the textContent of both the text elements
+
+    profileAvatar.src = userInfo.avatar;
+    profileName.textContent = userInfo.name;
+    jobElement.textContent = userInfo.about;
   })
   .catch(console.error);
 
@@ -58,6 +69,7 @@ const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardModalButton = document.querySelector(".profile__add-btn");
 const profileName = document.querySelector(".profile__name");
 const jobElement = document.querySelector(".profile__description");
+const profileAvatar = document.querySelector(".profile__avatar");
 
 // Edit form elements
 const editModal = document.querySelector("#edit-modal");
