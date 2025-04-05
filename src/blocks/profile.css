@@ -15,15 +15,21 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  gap: 8px;
   visibility: hidden; 
+  /* TODO - finish avatar button styles */
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
 }
 
-.profile__avatar-btn::after {
+/* .profile__avatar-btn::after {
   content: "Edit avatar";
+} */
+
+.profile__pencil-icon {
+
 }
 
 .profile__avatar {
@@ -122,6 +128,13 @@
     text-align: center;
     padding-top: 20px;
   }
+
+  .profile__avatar-btn {
+    visibility: visible;
+  }
+
+  /* TODO - set content of ::after element to empty "" */
+  /* TODO - finish mobile avatar styles */
 
   .profile__avatar {
     margin: 0 0 12px;

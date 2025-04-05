@@ -48,7 +48,6 @@ const api = new Api({
 api
   .getAppInfo()
   .then(([userInfo, cards]) => {
-    console.log("User data received:", userInfo);
     cards.forEach((item) => {
       console.log(item);
       renderCard(item, "append");
@@ -170,7 +169,7 @@ function handleAddCardSubmit(evt) {
   cardFormElement.reset();
 }
 
-function handleEdtFormSubmit(evt) {
+function handleEditFormSubmit(evt) {
   evt.preventDefault();
   api
     .editUserInfo({
@@ -220,7 +219,7 @@ cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
 });
 
-editFormElement.addEventListener("submit", handleEdtFormSubmit);
+editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 enableValidation(settings);
