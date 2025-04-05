@@ -48,15 +48,11 @@ const api = new Api({
 api
   .getAppInfo()
   .then(([userInfo, cards]) => {
-    console.log("User Info:", userInfo);
+    console.log("User data received:", userInfo);
     cards.forEach((item) => {
       console.log(item);
       renderCard(item, "append");
     });
-
-    // Handle the user's information
-    // - set the src of the avatars image
-    // - set the textContent of both the text elements
 
     profileAvatar.src = userInfo.avatar;
     profileName.textContent = userInfo.name;
@@ -176,9 +172,18 @@ function handleAddCardSubmit(evt) {
 
 function handleEdtFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  jobElement.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      console.log("User data received:", data);
+      profileName.textContent = data.name;
+      jobElement.textContent = data.about;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 profileEditButton.addEventListener("click", () => {
