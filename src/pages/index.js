@@ -76,6 +76,9 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
+// Delete form elements
+const deleteModal = document.querySelector("#delete-modal");
+
 // Card form elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardFormElement = cardModal.querySelector(".modal__form");
@@ -135,6 +138,7 @@ function getCardElement(data) {
   });
 
   deleteButton.addEventListener("click", () => {
+    openModal(deleteModal);
     cardElement.remove();
   });
 
@@ -199,8 +203,9 @@ function handleAvatarSubmit(evt) {
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
-      console.log(data)
-      // TODO - make this work
+      profileAvatar.src = data.avatar;
+      avatarForm.reset();
+      closeModal(avatarModal);
     })
     .catch(console.error);
 }
@@ -217,7 +222,6 @@ profileEditButton.addEventListener("click", () => {
 });
 
 //close modal overlay
-
 modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("modal_opened")) {
@@ -243,6 +247,10 @@ avatarFormElement.addEventListener("submit", handleAvatarSubmit);
 
 cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
+});
+
+avatarModalCloseBtn.addEventListener("click", () => {
+  closeModal(avatarModal);
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
