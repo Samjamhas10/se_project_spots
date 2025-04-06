@@ -15,6 +15,10 @@
   padding: 0 20px;
 }
 
+.modal__label-title {
+  opacity: 0.7;
+}
+
 .modal_opened {
   visibility: visible;
   opacity: 1;
@@ -39,10 +43,6 @@
   display: block;
 }
 
-.modal__image-link {
-  opacity: 0.7;
-}
-
 .modal__caption {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
@@ -57,10 +57,6 @@
   margin-top: 8px;
   margin-bottom: 0;
   position: absolute;
-}
-
-.modal__label-caption {
-  opacity: 0.7;
 }
 
 .modal__container {
@@ -127,10 +123,6 @@
 }
 
 .modal__label-title {
-  opacity: 0.7;
-}
-
-.modal__description {
   opacity: 0.7;
 }
 

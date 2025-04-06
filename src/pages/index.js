@@ -62,6 +62,7 @@ api
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardModalButton = document.querySelector(".profile__add-btn");
+const avatarModalButton = document.querySelector(".profile__avatar-btn");
 const profileName = document.querySelector(".profile__name");
 const jobElement = document.querySelector(".profile__description");
 const profileAvatar = document.querySelector(".profile__avatar");
@@ -94,8 +95,14 @@ const modalCloseTypePreview = previewModal.querySelector(
 // Card related elements
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
-
 const modals = document.querySelectorAll(".modal");
+
+// Avatar form element
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarFormElement = avatarModal.querySelector(".modal__form");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 modalCloseTypePreview.addEventListener("click", () => {
   closeModal(previewModal);
@@ -185,6 +192,19 @@ function handleEditFormSubmit(evt) {
     .catch(console.error);
 }
 
+// TODO - finish avatar submission handler
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  console.log(avatarInput.value);
+  api
+    .editAvatarInfo(avatarInput.value)
+    .then((data) => {
+      console.log(data)
+      // TODO - make this work
+    })
+    .catch(console.error);
+}
+
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = jobElement.textContent;
@@ -214,6 +234,12 @@ editModalCloseBtn.addEventListener("click", () => {
 cardModalButton.addEventListener("click", () => {
   openModal(cardModal);
 });
+
+avatarModalButton.addEventListener("click", () => {
+  openModal(avatarModal);
+});
+
+avatarFormElement.addEventListener("submit", handleAvatarSubmit);
 
 cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);

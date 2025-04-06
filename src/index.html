@@ -96,10 +96,11 @@
               <span id="profile-name-input-error" class="modal__error"></span>
             </label>
             <label for="profile-description-input" class="modal__label"
-              ><span class="modal__description">Description</span>
+              ><span class="modal__label-title">Description</span>
               <input
                 id="profile-description-input"
                 type="text"
+                name="profile-description"
                 class="modal__input"
                 placeholder="Describe yourself"
                 minlength="2"
@@ -128,14 +129,9 @@
         <button type="button" class="modal__close-btn"></button>
         <h2 class="modal__title">New post</h2>
 
-        <form
-          name="edit-profile"
-          class="modal__form"
-          id="add-card-form"
-          novalidate
-        >
+        <form name="add-card" class="modal__form" id="add-card-form" novalidate>
           <label for="add-card-link-input" class="modal__label"
-            ><span class="modal__image-link">Image link</span>
+            ><span class="modal__label-title">Image link</span>
             <input
               id="add-card-link-input"
               type="url"
@@ -148,7 +144,7 @@
           </label>
 
           <label for="add-card-name-input" class="modal__label"
-            ><span class="modal__label-caption">Caption</span>
+            ><span class="modal__label-title">Caption</span>
             <input
               id="add-card-name-input"
               type="text"
@@ -183,24 +179,27 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-    <div class="modal" id="edit-modal">
+    <div class="modal" id="avatar-modal">
       <div class="modal__container">
         <button type="button" class="modal__close-btn"></button>
-        <h2 class="modal__title">Edit profile</h2>
-        <form name="modal__form" class="modal__form" id="edit-avatar-form" novalidate>
+        <h2 class="modal__title">Edit avatar</h2>
+        <form
+          name="edit-avatar"
+          class="modal__form"
+          id="edit-avatar-form"
+          novalidate
+        >
           <label for="profile-avatar-input" class="modal__label"
             ><span class="modal__label-title">Avatar</span>
             <input
-              id="edit-avatar-form"
-              type="text"
-              name="name"
+              id="profile-avatar-input"
+              type="url"
+              name="avatar"
               class="modal__input"
-              placeholder="Type your name"
-              minlength="2"
-              maxlength="40"
+              placeholder="avatar goes here"
               required
             />
-            <span id="profile-name-input-error" class="modal__error"></span>
+            <span id="profile-avatar-input-error" class="modal__error"></span>
           </label>
           <button
             type="submit"
@@ -210,5 +209,7 @@
             Save
           </button>
         </form>
+      </div>
+    </div>
   </body>
 </html>
