@@ -49,7 +49,6 @@ api
   .getAppInfo()
   .then(([userInfo, cards]) => {
     cards.forEach((item) => {
-      console.log(item);
       renderCard(item, "append");
     });
 
@@ -78,6 +77,7 @@ const editModalDescriptionInput = editModal.querySelector(
 
 // Delete form elements
 const deleteModal = document.querySelector("#delete-modal");
+const deleteForm = deleteModal.querySelector(".modal__form");
 
 // Card form elements
 const cardModal = document.querySelector("#add-card-modal");
@@ -99,6 +99,8 @@ const modalCloseTypePreview = previewModal.querySelector(
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 const modals = document.querySelectorAll(".modal");
+
+let selectedCard, selectedCardId;
 
 // Avatar form element
 const avatarModal = document.querySelector("#avatar-modal");
@@ -137,14 +139,32 @@ function getCardElement(data) {
     previewModalCaptionEl.textContent = data.name;
   });
 
-  deleteButton.addEventListener("click", () => {
-    openModal(deleteModal);
-    cardElement.remove();
+  deleteButton.addEventListener("click", (evt) => {
+    handleDeleteCard(cardElement, data._id);
+    // cardElement.remove();
   });
 
   return cardElement;
 }
 
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  api
+    .deleteCard(selectedCardId )
+    .then(() => {
+      // TODO 
+      selectedCard.remove();
+      closeModal(deleteModal);
+      
+    })
+    .catch(console.error);
+}
+
+function handleDeleteCard(cardElement, cardId) {
+  selectedCard = cardElement;
+  selectedCardId = cardId;
+  openModal(deleteModal);
+}
 // close Escape key
 
 function handlePressEsc(evt) {
@@ -221,7 +241,7 @@ profileEditButton.addEventListener("click", () => {
   );
 });
 
-//close modal overlay
+// close modal overlay
 modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("modal_opened")) {
@@ -244,6 +264,7 @@ avatarModalButton.addEventListener("click", () => {
 });
 
 avatarFormElement.addEventListener("submit", handleAvatarSubmit);
+deleteForm.addEventListener("submit", handleDeleteSubmit);
 
 cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
