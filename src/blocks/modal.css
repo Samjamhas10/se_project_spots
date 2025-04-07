@@ -49,7 +49,7 @@
   position: relative;
 }
 
-.modal__delete-btn.modal__delete-btn_type_preview {
+.modal__delete-btn_type_preview {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -62,7 +62,7 @@
   border: none;
 }
 
-.modal__cancel-btn.modal__cancel-btn_type_preview {
+.modal__cancel-btn_type_preview {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;

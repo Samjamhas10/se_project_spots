@@ -1,5 +1,5 @@
 export const settings = {
-  formSelector: ".modal__form",
+  formSelector: ".modal__form_validate",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
   inactiveButtonClass: "modal__submit-btn_disabled",

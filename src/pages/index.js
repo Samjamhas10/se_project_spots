@@ -7,33 +7,33 @@ import {
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
+// const initialCards = [
+//   {
+//     name: "Val Thorens",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
 
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
+//   {
+//     name: "Restaurant terrace",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+//   },
+//   {
+//     name: "An outdoor cafe",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+//   },
+//   {
+//     name: "A very long bridge, over the forest and through the trees",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+//   },
+//   {
+//     name: "Tunnel with morning light",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+//   },
+//   {
+//     name: "Mountain house",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
+// ];
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -43,12 +43,22 @@ const api = new Api({
   },
 });
 
-// Destructure the second item in the callback of the .then()
+// api
+//   .addCard({
+//     name,
+//     link,
+//   })
+//   .then((newCard) => {
+//     renderCard(newCard);
+//   })
+//   .catch((err) => console.log("Error adding card:", err));
 
 api
   .getAppInfo()
   .then(([userInfo, cards]) => {
+    console.log("Received cards:", cards);
     cards.forEach((item) => {
+      console.log("Processing card:", item);
       renderCard(item, "append");
     });
 
@@ -98,6 +108,7 @@ const modalCloseTypePreview = previewModal.querySelector(
 // Card related elements
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+console.log("Cards list element:", cardsList);
 const modals = document.querySelectorAll(".modal");
 
 let selectedCard, selectedCardId;
@@ -113,7 +124,19 @@ modalCloseTypePreview.addEventListener("click", () => {
   closeModal(previewModal);
 });
 
+// Load initial cards when page loads
+// api
+//   .getInitialCards()
+//   .then((cards) => {
+//     console.log("Cards received:", cards);
+//     cards.forEach((data) => {
+//       renderCard(data);
+//     });
+//   })
+//   .catch(console.error);
+
 function getCardElement(data) {
+  console.log("Getting card element for:", data);
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
@@ -128,8 +151,27 @@ function getCardElement(data) {
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   const deleteButton = cardElement.querySelector(".card__delete-btn");
 
-  cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-btn_liked");
+  function handleLike(evt, cardId) {
+    evt.preventDefault();
+    const likeButton = evt.target;
+    likeButton.disabled = true;
+    const isLiked = likeButton.classList.contains("card__like-btn_liked");
+
+    api
+      .changeLikeStatus(cardId, isLiked)
+      .then((res) => {
+        likeButton.classList.toggle("card__like-btn_liked");
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      })
+      .finally(() => {
+        likeButton.disabled = false;
+      });
+  }
+
+  cardLikeBtn.addEventListener("click", (evt) => {
+    handleLike(evt, data._id);
   });
 
   cardImageEl.addEventListener("click", () => {
@@ -141,7 +183,6 @@ function getCardElement(data) {
 
   deleteButton.addEventListener("click", (evt) => {
     handleDeleteCard(cardElement, data._id);
-    // cardElement.remove();
   });
 
   return cardElement;
@@ -150,12 +191,10 @@ function getCardElement(data) {
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
-    .deleteCard(selectedCardId )
+    .deleteCard(selectedCardId)
     .then(() => {
-      // TODO 
       selectedCard.remove();
       closeModal(deleteModal);
-      
     })
     .catch(console.error);
 }
@@ -165,7 +204,6 @@ function handleDeleteCard(cardElement, cardId) {
   selectedCardId = cardId;
   openModal(deleteModal);
 }
-// close Escape key
 
 function handlePressEsc(evt) {
   if (evt.key === "Escape") {
@@ -187,17 +225,28 @@ function closeModal(modal) {
 }
 
 function renderCard(cardData, placement = "prepend") {
+  console.log(`Rendering card: ${cardData.name} with placement: ${placement}`);
+
   const cardElement = getCardElement(cardData);
-  cardsList[placement](cardElement);
+  if (placement === "append") {
+    cardsList.append(cardElement);
+  } else {
+    cardsList.prepend(cardElement);
+  }
 }
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  renderCard(inputValues);
-  closeModal(cardModal);
-  disableButton(cardSubmitBtn, settings);
-  cardFormElement.reset();
+  api
+    .addCard(inputValues)
+    .then((cardData) => {
+      renderCard(cardData, "prepend");
+      closeModal(cardModal);
+      disableButton(cardSubmitBtn, settings);
+      cardFormElement.reset();
+    })
+    .catch(console.error);
 }
 
 function handleEditFormSubmit(evt) {
@@ -224,7 +273,7 @@ function handleAvatarSubmit(evt) {
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
       profileAvatar.src = data.avatar;
-      avatarForm.reset();
+      avatarFormElement.reset();
       closeModal(avatarModal);
     })
     .catch(console.error);
