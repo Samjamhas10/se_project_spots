@@ -6,34 +6,35 @@ import {
   disableButton,
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
+import { setButtonText } from "../utils/helpers.js";
 
-// const initialCards = [
-//   {
-//     name: "Val Thorens",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-//   },
+const initialCards = [
+  {
+    name: "Val Thorens",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+  },
 
-//   {
-//     name: "Restaurant terrace",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-//   },
-//   {
-//     name: "An outdoor cafe",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-//   },
-//   {
-//     name: "A very long bridge, over the forest and through the trees",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-//   },
-//   {
-//     name: "Tunnel with morning light",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-//   },
-//   {
-//     name: "Mountain house",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-//   },
-// ];
+  {
+    name: "Restaurant terrace",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+  },
+  {
+    name: "An outdoor cafe",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+  },
+  {
+    name: "A very long bridge, over the forest and through the trees",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+  },
+  {
+    name: "Tunnel with morning light",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+  },
+  {
+    name: "Mountain house",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+  },
+];
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -43,15 +44,15 @@ const api = new Api({
   },
 });
 
-// api
-//   .addCard({
-//     name,
-//     link,
-//   })
-//   .then((newCard) => {
-//     renderCard(newCard);
-//   })
-//   .catch((err) => console.log("Error adding card:", err));
+api
+  .addCard({
+    name: "Mountain house",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+  })
+  .then((newCard) => {
+    renderCard(newCard);
+  })
+  .catch((err) => console.log("Error adding card:", err));
 
 api
   .getAppInfo()
@@ -190,13 +191,28 @@ function getCardElement(data) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+  const deleteButton = evt.submitter;
+  setButtonText({
+    btn: deleteButton,
+    isLoading: true,
+    defaultText: "Delete",
+    loadingText: "Deleting...",
+  });
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText({
+        btn: deleteButton,
+        isLoading: false,
+        defaultText: "Delete",
+        loadingText: "Deleting...",
+      });
+    });
 }
 
 function handleDeleteCard(cardElement, cardId) {
@@ -238,6 +254,8 @@ function renderCard(cardData, placement = "prepend") {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
+  const modal__submit = evt.submitter;
+  setButtonText(modal__submit, true);
   api
     .addCard(inputValues)
     .then((cardData) => {
@@ -246,29 +264,46 @@ function handleAddCardSubmit(evt) {
       disableButton(cardSubmitBtn, settings);
       cardFormElement.reset();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(modal__submit, false);
+    });
 }
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+  const modal__submit = evt.submitter;
+  // modal__submit.textContent = "Saving...";
+  setButtonText(modal__submit, true);
+
   api
     .editUserInfo({
       name: editModalNameInput.value,
       about: editModalDescriptionInput.value,
     })
     .then((data) => {
-      console.log("User data received:", data);
       profileName.textContent = data.name;
       jobElement.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      // modal__submit.textContent = "Save";
+      setButtonText(modal__submit, false);
+    });
 }
 
-// TODO - finish avatar submission handler
+// TODO - implement loadingText for all other form submissions
+
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
-  console.log(avatarInput.value);
+  const modal__submit = evt.submitter;
+  setButtonText({
+    btn: modal__submit,
+    isLoading: true,
+    defaultText: "Save",
+    loadingText: "Saving...",
+  });
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
@@ -276,7 +311,15 @@ function handleAvatarSubmit(evt) {
       avatarFormElement.reset();
       closeModal(avatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText({
+        btn: modal__submit,
+        isLoading: false,
+        defaultText: "Save",
+        loadingText: "Saving...",
+      });
+    });
 }
 
 profileEditButton.addEventListener("click", () => {

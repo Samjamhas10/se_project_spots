@@ -80,7 +80,11 @@
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">Edit profile</h2>
-          <form name="edit-profile" class="modal__form modal__form_validate" novalidate>
+          <form
+            name="edit-profile"
+            class="modal__form modal__form_validate"
+            novalidate
+          >
             <label for="profile-name-input" class="modal__label"
               ><span class="modal__label-title">Name</span>
               <input
@@ -100,7 +104,7 @@
               <input
                 id="profile-description-input"
                 type="text"
-                name="profile-description"
+                name="description"
                 class="modal__input"
                 placeholder="Describe yourself"
                 minlength="2"
@@ -129,7 +133,12 @@
         <button type="button" class="modal__close-btn"></button>
         <h2 class="modal__title">New post</h2>
 
-        <form name="add-card" class="modal__form modal__form_validate" id="add-card-form" novalidate>
+        <form
+          name="add-card"
+          class="modal__form modal__form_validate"
+          id="add-card-form"
+          novalidate
+        >
           <label for="add-card-link-input" class="modal__label"
             ><span class="modal__label-title">Image link</span>
             <input
@@ -180,39 +189,36 @@
       </div>
     </div>
     <div class="modal" id="avatar-modal">
-      <div class="modal__container">
+      <div class="modal__container modal__container_type_avatar">
         <button type="button" class="modal__close-btn"></button>
-        <h2 class="modal__title">Edit avatar</h2>
+        <h2 class="modal__title modal__title_type_avatar">
+          Edit profile avatar
+        </h2>
         <form
           name="edit-avatar"
           class="modal__form modal__form_validate"
           id="edit-avatar-form"
           novalidate
         >
-          <label for="profile-avatar-input" class="modal__label"
-            ><span class="modal__label-title">Avatar</span>
+          <label
+            for="profile-avatar-input"
+            class="modal__label modal__label_type_avatar"
+            ><span class="modal__label-title">Profile Picture</span>
             <input
               id="profile-avatar-input"
               type="url"
               name="avatar"
               class="modal__input"
-              placeholder="avatar goes here"
+              placeholder="Paste the link to an image"
               required
             />
             <span id="profile-avatar-input-error" class="modal__error"></span>
           </label>
-          <button
-            type="submit"
-            class="modal__submit-btn modal__submit-btn_disabled"
-            disabled
-          >
-            Save
-          </button>
+          <button type="submit" class="modal__submit-btn">Save</button>
         </form>
       </div>
     </div>
 
-    <!-- TODO - style the modal how -->
     <div class="modal" id="delete-modal">
       <div class="modal__container modal__container_type_delete">
         <button
@@ -230,7 +236,7 @@
         >
           <button
             type="submit"
-            class="modal_delete-btn modal__delete-btn_type_preview"
+            class="modal__delete-btn modal__delete-btn_type_preview"
           >
             Delete
           </button>
