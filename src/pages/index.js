@@ -44,30 +44,33 @@ const api = new Api({
   },
 });
 
-api
-  .addCard({
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  })
-  .then((newCard) => {
-    renderCard(newCard);
-  })
-  .catch((err) => console.log("Error adding card:", err));
+// api
+//   .addCard({})
+//   .then((newCard) => {
+//     renderCard(newCard);
+//   })
+//   .catch((err) => console.log("Error adding card:", err));
 
-api
-  .getAppInfo()
-  .then(([userInfo, cards]) => {
-    console.log("Received cards:", cards);
-    cards.forEach((item) => {
-      console.log("Processing card:", item);
-      renderCard(item, "append");
-    });
+function clearCardsList() {
+  while (cardsList.firstChild) {
+    cardsList.firstChild.remove();
+  }
+}
 
-    profileAvatar.src = userInfo.avatar;
-    profileName.textContent = userInfo.name;
-    jobElement.textContent = userInfo.about;
-  })
-  .catch(console.error);
+// api
+//   .getAppInfo()
+//   .then(([userInfo, cards]) => {
+//     clearCardsList(); // clear API cards..
+//     console.log("Cards list cleared");
+//     cards.forEach((item) => {
+//       renderCard(item, "append");
+//     });
+
+//     profileAvatar.src = userInfo.avatar;
+//     profileName.textContent = userInfo.name;
+//     jobElement.textContent = userInfo.about;
+//   })
+//   .catch(console.error);
 
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -89,6 +92,7 @@ const editModalDescriptionInput = editModal.querySelector(
 // Delete form elements
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
+const cancelButton = document.querySelector(".modal__cancel-btn");
 
 // Card form elements
 const cardModal = document.querySelector("#add-card-modal");
@@ -189,6 +193,16 @@ function getCardElement(data) {
   return cardElement;
 }
 
+cancelButton.addEventListener("click", (evt) => {
+  closeModal(deleteModal);
+});
+
+// const container = document.querySelector('.container');
+// data.forEach(item => {
+//   const cardHTML = createCardHTML(item);
+//   container.insertAdjacentHTML('beforeend', cardHTML);
+// });
+
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   const deleteButton = evt.submitter;
@@ -242,11 +256,13 @@ function closeModal(modal) {
 
 function renderCard(cardData, placement = "prepend") {
   console.log(`Rendering card: ${cardData.name} with placement: ${placement}`);
-
   const cardElement = getCardElement(cardData);
+  console.log("Card element created:", cardElement);
   if (placement === "append") {
+    console.log("Appending card to list");
     cardsList.append(cardElement);
   } else {
+    console.log("Prepending card to list");
     cardsList.prepend(cardElement);
   }
 }
@@ -255,7 +271,7 @@ function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const modal__submit = evt.submitter;
-  setButtonText(modal__submit, true);
+  setButtonText({ btn: modal__submit, isLoading: true });
   api
     .addCard(inputValues)
     .then((cardData) => {
@@ -266,15 +282,19 @@ function handleAddCardSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(modal__submit, false);
+      setButtonText({ btn: modal__submit, isLoading: false });
     });
 }
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  const modal__submit = evt.submitter;
   // modal__submit.textContent = "Saving...";
-  setButtonText(modal__submit, true);
+  const modal__submit = evt.submitter;
+  setButtonText({
+    btn: modal__submit,
+    isLoading: true,
+    loadingText: "Saving...",
+  });
 
   api
     .editUserInfo({
@@ -289,7 +309,11 @@ function handleEditFormSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       // modal__submit.textContent = "Save";
-      setButtonText(modal__submit, false);
+      setButtonText({
+        btn: modal__submit,
+        isLoading: false,
+        loadingText: "Save",
+      });
     });
 }
 
