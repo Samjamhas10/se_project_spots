@@ -8,34 +8,6 @@ import {
 import Api from "../utils/Api.js";
 import { setButtonText } from "../utils/helpers.js";
 
-// const initialCards = [
-//   {
-//     name: "Val Thorens",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-//   },
-
-//   {
-//     name: "Restaurant terrace",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-//   },
-//   {
-//     name: "An outdoor cafe",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-//   },
-//   {
-//     name: "A very long bridge, over the forest and through the trees",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-//   },
-//   {
-//     name: "Tunnel with morning light",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-//   },
-//   {
-//     name: "Mountain house",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-//   },
-// ];
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -43,13 +15,6 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-// api
-//   .addCard({})
-//   .then((newCard) => {
-//     renderCard(newCard);
-//   })
-//   .catch((err) => console.log("Error adding card:", err));
 
 function clearCardsList() {
   while (cardsList.firstChild) {
@@ -60,7 +25,6 @@ function clearCardsList() {
 api
   .getAppInfo()
   .then(([userInfo, cards]) => {
-    console.log("Cards list cleared");
     cards.forEach((item) => {
       renderCard(item, "append");
     });
@@ -112,7 +76,7 @@ const modalCloseTypePreview = previewModal.querySelector(
 // Card related elements
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
-console.log("Cards list element:", cardsList);
+
 const modals = document.querySelectorAll(".modal");
 
 let selectedCard, selectedCardId;
@@ -128,19 +92,7 @@ modalCloseTypePreview.addEventListener("click", () => {
   closeModal(previewModal);
 });
 
-// Load initial cards when page loads
-// api
-//   .getInitialCards()
-//   .then((cards) => {
-//     console.log("Cards received:", cards);
-//     cards.forEach((data) => {
-//       renderCard(data);
-//     });
-//   })
-//   .catch(console.error);
-
 function getCardElement(data) {
-  console.log("Getting card element for:", data);
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
@@ -196,12 +148,6 @@ cancelButton.addEventListener("click", (evt) => {
   closeModal(deleteModal);
 });
 
-// const container = document.querySelector('.container');
-// data.forEach(item => {
-//   const cardHTML = createCardHTML(item);
-//   container.insertAdjacentHTML('beforeend', cardHTML);
-// });
-
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   const deleteButton = evt.submitter;
@@ -254,14 +200,11 @@ function closeModal(modal) {
 }
 
 function renderCard(cardData, placement = "prepend") {
-  console.log(`Rendering card: ${cardData.name} with placement: ${placement}`);
   const cardElement = getCardElement(cardData);
-  console.log("Card element created:", cardElement);
+
   if (placement === "append") {
-    console.log("Appending card to list");
     cardsList.append(cardElement);
   } else {
-    console.log("Prepending card to list");
     cardsList.prepend(cardElement);
   }
 }
@@ -287,11 +230,11 @@ function handleAddCardSubmit(evt) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  // modal__submit.textContent = "Saving...";
   const modal__submit = evt.submitter;
   setButtonText({
     btn: modal__submit,
     isLoading: true,
+    defaultText: "Save",
     loadingText: "Saving...",
   });
 
@@ -307,16 +250,14 @@ function handleEditFormSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      // modal__submit.textContent = "Save";
       setButtonText({
         btn: modal__submit,
         isLoading: false,
-        loadingText: "Save",
+        defaultText: "Save",
+        loadingText: "Saving...",
       });
     });
 }
-
-// TODO - implement loadingText for all other form submissions
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
