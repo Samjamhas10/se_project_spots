@@ -54,6 +54,7 @@ const editModalDescriptionInput = editModal.querySelector(
 
 // Delete form elements
 const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 const deleteForm = deleteModal.querySelector(".modal__form");
 const cancelButton = document.querySelector(".modal__cancel-btn");
 
@@ -300,7 +301,10 @@ profileEditButton.addEventListener("click", () => {
 // close modal overlay
 modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("modal_opened")) {
+    if (
+      evt.target.classList.contains("modal_opened") ||
+      evt.target.classList.contains("modal__close-btn")
+    ) {
       closeModal(modal);
     }
   });

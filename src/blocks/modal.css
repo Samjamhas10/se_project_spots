@@ -272,6 +272,10 @@
     padding: 12px;
   }
 
+  .modal__container_type_avatar {
+    height: 222px;
+  }
+
   .modal__caption {
     font-size: 16px;
     line-height: 19.2px;
@@ -283,12 +287,14 @@
   }
 
   .modal__title_type_avatar {
-    margin-bottom: 20px, 12px;
+    margin-bottom: 20px;
+    line-height: 120%;
   }
 
   .modal__close-btn {
-    top: 12px;
-    right: 12px;
+    right: -1px;
+    top: 6px;
+    margin-right: 12px;
   }
 
   .modal__close-btn_type_preview {
@@ -298,6 +304,10 @@
 
   .modal__label {
     gap: 8px;
+  }
+
+  .modal__label_type_avatar {
+    margin-bottom: 20px;
   }
 
   .modal__input {
