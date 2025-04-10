@@ -16,12 +16,6 @@ const api = new Api({
   },
 });
 
-function clearCardsList() {
-  while (cardsList.firstChild) {
-    cardsList.firstChild.remove();
-  }
-}
-
 api
   .getAppInfo()
   .then(([userInfo, cards]) => {
@@ -85,7 +79,6 @@ let selectedCard, selectedCardId;
 // Avatar form element
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarFormElement = avatarModal.querySelector(".modal__form");
-const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 

@@ -25,7 +25,7 @@
 }
 
 .modal__title_type_avatar {
-  margin-bottom: 12px;
+  margin-bottom: 32px;
 }
 
 .modal__title_type_delete {
@@ -140,7 +140,7 @@
 .modal__close-btn {
   position: absolute;
   top: 30px;
-  right: 56px;
+  right: 50px;
   width: 40px;
   height: 40px;
   border: none;
@@ -273,7 +273,10 @@
   }
 
   .modal__container_type_avatar {
-    height: 222px;
+    min-height: 222px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .modal__caption {
@@ -291,15 +294,46 @@
     line-height: 120%;
   }
 
+  .modal__container_type_delete {
+    padding: 12px;
+    width: 300px;
+    min-height: 208px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal__title_type_delete {
+    margin-bottom: 20px;
+  }
+
   .modal__close-btn {
-    right: -1px;
-    top: 6px;
-    margin-right: 12px;
+    width: 48px;
+    height: 48px;
+    right: 0;
+    top: 8px;
   }
 
   .modal__close-btn_type_preview {
     top: -47px;
     right: 0;
+  }
+
+  .modal__delete-btn_type_preview {
+    margin-bottom: 12px;
+    width: 156px;
+  }
+
+  .modal__cancel-btn_type_preview {
+    width: 156px;
+    margin-left: 0;
+  }
+
+  .modal__close-btn_type_button {
+    width: 40px;
+    height: 40px;
+    top: -48px;
+    right: 0px;
   }
 
   .modal__label {
@@ -317,11 +351,11 @@
 
   .modal__submit-btn {
     width: 100%;
-    padding: 18px 118px;
   }
 
-  .modal__error {
-    margin-bottom: 24px;
+  .modal__submit-btn_type_avatar {
+    margin-top: auto;
+    width: 100%;
   }
 }
 

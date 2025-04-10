@@ -23,19 +23,10 @@
   position: absolute;
   visibility: hidden;
   width: 100%;
-
-  /* TODO - finish avatar button styles */
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
-}
-
-/* .profile__avatar-btn::after {
-  content: "Edit avatar";
-} */
-
-.profile__pencil-icon {
 }
 
 .profile__avatar {
@@ -151,6 +142,7 @@
     bottom: 4.66px;
     right: 4.66px;
     border-radius: 6px;
+    cursor: pointer;
   }
 
   .profile__avatar {
