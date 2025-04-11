@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="brb" />
+    <meta
+      name="description"
+      content="Create and customize your personal user profile. with this interactive profile app"
+    />
     <meta name="author" content="SamSam Hashi" />
     <meta name="keywords" content="Spots project" />
 
@@ -21,6 +24,7 @@
       <main class="content">
         <section class="profile page__section">
           <div class="profile__avatar-container">
+            
             <button class="profile__avatar-btn"></button>
             <img
               src="<%=require('./images/avatar.jpg')%>"
@@ -208,7 +212,12 @@
             />
             <span id="profile-avatar-input-error" class="modal__error"></span>
           </label>
-          <button type="submit" class="modal__submit-btn modal__submit-btn_disabled">Save</button>
+          <button
+            type="submit"
+            class="modal__submit-btn modal__submit-btn_disabled"
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>

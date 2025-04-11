@@ -289,6 +289,10 @@
     line-height: 20px;
   }
 
+  .modal__pointer-img {
+    display: none;
+  }
+
   .modal__title_type_avatar {
     margin-bottom: 20px;
     line-height: 120%;
