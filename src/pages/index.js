@@ -40,7 +40,7 @@ const profileAvatar = document.querySelector(".profile__avatar");
 // Edit form elements
 const editModal = document.querySelector("#edit-modal");
 const editFormElement = editModal.querySelector(".modal__form");
-const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
+
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
@@ -48,7 +48,6 @@ const editModalDescriptionInput = editModal.querySelector(
 
 // Delete form elements
 const deleteModal = document.querySelector("#delete-modal");
-const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 const deleteForm = deleteModal.querySelector(".modal__form");
 const cancelButton = document.querySelector(".modal__cancel-btn");
 
@@ -56,7 +55,7 @@ const cancelButton = document.querySelector(".modal__cancel-btn");
 const cardModal = document.querySelector("#add-card-modal");
 const cardFormElement = cardModal.querySelector(".modal__form");
 const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
-const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
+
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
@@ -64,14 +63,10 @@ const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
-const modalCloseTypePreview = previewModal.querySelector(
-  ".modal__close-btn_type_preview"
-);
 
 // Card related elements
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
-
 const modals = document.querySelectorAll(".modal");
 
 let selectedCard, selectedCardId;
@@ -79,12 +74,7 @@ let selectedCard, selectedCardId;
 // Avatar form element
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarFormElement = avatarModal.querySelector(".modal__form");
-const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
-
-modalCloseTypePreview.addEventListener("click", () => {
-  closeModal(previewModal);
-});
 
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -100,6 +90,10 @@ function getCardElement(data) {
 
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   const deleteButton = cardElement.querySelector(".card__delete-btn");
+
+  if (data.isLiked) {
+    cardLikeBtn.classList.add("card__like-btn_liked");
+  }
 
   function handleLike(evt, cardId) {
     evt.preventDefault();
@@ -206,8 +200,8 @@ function renderCard(cardData, placement = "prepend") {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const modal__submit = evt.submitter;
-  setButtonText({ btn: modal__submit, isLoading: true });
+  const submitButton = evt.submitter;
+  setButtonText({ btn: submitButton, isLoading: true });
   api
     .addCard(inputValues)
     .then((cardData) => {
@@ -218,15 +212,15 @@ function handleAddCardSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText({ btn: modal__submit, isLoading: false });
+      setButtonText({ btn: submitButton, isLoading: false });
     });
 }
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  const modal__submit = evt.submitter;
+  const submitButton = evt.submitter;
   setButtonText({
-    btn: modal__submit,
+    btn: submitButton,
     isLoading: true,
     defaultText: "Save",
     loadingText: "Saving...",
@@ -245,7 +239,7 @@ function handleEditFormSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       setButtonText({
-        btn: modal__submit,
+        btn: submitButton,
         isLoading: false,
         defaultText: "Save",
         loadingText: "Saving...",
@@ -255,9 +249,9 @@ function handleEditFormSubmit(evt) {
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
-  const modal__submit = evt.submitter;
+  const submitButton = evt.submitter;
   setButtonText({
-    btn: modal__submit,
+    btn: submitButton,
     isLoading: true,
     defaultText: "Save",
     loadingText: "Saving...",
@@ -268,11 +262,12 @@ function handleAvatarSubmit(evt) {
       profileAvatar.src = data.avatar;
       avatarFormElement.reset();
       closeModal(avatarModal);
+      disableButton(evt.submitter, settings);
     })
     .catch(console.error)
     .finally(() => {
       setButtonText({
-        btn: modal__submit,
+        btn: submitButton,
         isLoading: false,
         defaultText: "Save",
         loadingText: "Saving...",
@@ -304,9 +299,6 @@ modals.forEach((modal) => {
 });
 
 // click the close button on the edit profile modal to close that modal
-editModalCloseBtn.addEventListener("click", () => {
-  closeModal(editModal);
-});
 
 cardModalButton.addEventListener("click", () => {
   openModal(cardModal);
@@ -318,14 +310,6 @@ avatarModalButton.addEventListener("click", () => {
 
 avatarFormElement.addEventListener("submit", handleAvatarSubmit);
 deleteForm.addEventListener("submit", handleDeleteSubmit);
-
-cardModalCloseBtn.addEventListener("click", () => {
-  closeModal(cardModal);
-});
-
-avatarModalCloseBtn.addEventListener("click", () => {
-  closeModal(avatarModal);
-});
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardFormElement.addEventListener("submit", handleAddCardSubmit);
