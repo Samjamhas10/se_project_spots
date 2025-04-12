@@ -1,5 +1,5 @@
-const settings = {
-  formSelector: ".modal__form",
+export const settings = {
+  formSelector: ".modal__form_validate",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
   inactiveButtonClass: "modal__submit-btn_disabled",
@@ -51,14 +51,14 @@ const toggleButtonState = (inputList, buttonEl, config) => {
 };
 
 // add resetValidation
-const resetValidation = (formEl, inputEl, config) => {
+export const resetValidation = (formEl, inputEl, config) => {
   inputEl.forEach((input) => {
     hideInputError(formEl, input, config);
   });
 };
 
 // Disable submit button
-const disableButton = (buttonEl, config) => {
+export const disableButton = (buttonEl, config) => {
   buttonEl.disabled = true;
   buttonEl.classList.add(config.inactiveButtonClass);
 };
@@ -78,11 +78,9 @@ const setEventListeners = (formEl, config) => {
   });
 };
 
-const enableValidation = (config) => {
+export const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formEl) => {
     setEventListeners(formEl, config);
   });
 };
-
-enableValidation(settings);

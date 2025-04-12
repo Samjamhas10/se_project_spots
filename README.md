@@ -1,12 +1,11 @@
-# Project 3: Spots
+# Project 9: Spots
 
 ## Description 
 
-This is the third project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the figma design brief. This is an image sharing site that works great on all devices. 
+This is the ninth project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the figma design brief. This interactive profile app lets you create and customize your perosnal user profile. 
 
 
 ### Overview  
-
 * Intro  
 * Figma  
 * Images 
