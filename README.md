@@ -49,7 +49,7 @@ This design is responsive, making it user-friendly on different devices.
 
 ## Delete Mode
 
-[Delete Screenshot](delete-mode.png)
+![Delete Screenshot](delete-mode.png)
 
 ## Live Demo
 
