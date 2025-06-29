@@ -51,6 +51,10 @@ This design is responsive, making it user-friendly on different devices.
 
 ![Delete Screenshot](delete-mode.png)
 
+## Add Mode
+
+![Add Screenshot](add-mode.png)
+
 ## Live Demo
 
 - This webpage is deployed to github pages:
