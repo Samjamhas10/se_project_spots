@@ -1,36 +1,63 @@
-# Project 9: Spots
+# Spots
 
-## Description 
+The project, named "Spots," is an interactive profile app that allows you to create and customize your user profile.
 
-This is the ninth project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the figma design brief. This interactive profile app lets you create and customize your perosnal user profile. 
+## Table of Contents
 
+- [Project Description](#project-description)
+- [Plan on Improving the Project](#plan-on-improving-the-project)
+- [Project Features](#project-features)
+- [Screenshots](#screenshots)
+- [Live Demo](#live-demo)
+- [Project Demo](#project-demo)
 
-### Overview  
-* Intro  
-* Figma  
-* Images 
-  
-**Intro**
+## Description
 
-* HMTL 
-* CSS
-* Responsive Design
-* Flexbox 
-* Positioning
-* Flat BEM File Structure
-* Media Query
-  
-**Figma**  
-  
-- This webpage is deployed to github pages. 
+This project was completed as part of the Software Engineering program at TripleTen. It was developed using HTML and CSS, following a design brief from Figma.
 
-* Deployment link: https://samjamhas10.github.io/se_project_spots/
-  
-**Images**  
-  
-![Val](images/1-photo-by-moritz-feldmann-from-pexels.jpg)
+### Project features
 
-**Project Video**
+- Figma
+- HTML
+- CSS
+- Responsive Design
+- Flexbox
+- Positioning
+- Flat BEM File Structure
+- Media Query
+
+## Plan on improving the project
+
+- Address the lack of personaliztion by implementing a theme switcher like night/day mode, allowing users to toggle between day and night modes for enhanced visual appearnce and improved accessibility
+- Enhance a customization options by adding the ability for users to select from a list of different background colors, giving them more control to personalize their profile section
+
+## Screenshots
+
+## Profile
+
+![Profile Screenshot](profile-page.png)
+
+## Edit Mode
+![Edit Screenshot](edit-mode.png)
+
+## View Mode
+![View Screenshot](view-mode.png)
+
+## Live Demo
+
+- This webpage is deployed to github pages:
+
+Deployment link: https://samjamhas10.github.io/se_project_spots/
+
+## Project Demo
 
 https://www.loom.com/share/abb517ce18e94cc28e7db3f33cb54c29
 
+## Deployment Instructions
+
+To run the project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/samjamhas10/se_project_spots.git
+   ```

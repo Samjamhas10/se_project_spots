@@ -4,8 +4,6 @@ class Api {
     this._headers = headers;
   }
 
-
-
   // gets both user information and initial cards into a single request
   getAppInfo() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
