@@ -47,6 +47,10 @@ This design is responsive, making it user-friendly on different devices.
 
 ![View Screenshot](view-mode.png)
 
+## Delete Mode
+
+[Delete Screenshot](delete-mode.png)
+
 ## Live Demo
 
 - This webpage is deployed to github pages:
