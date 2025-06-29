@@ -25,6 +25,7 @@ This project was completed as part of the Software Engineering program at Triple
 - Positioning
 - Flat BEM File Structure
 - Media Query
+- Webpack
 
 ## Plan on improving the project
 
