@@ -5,8 +5,8 @@ The project, named "Spots," is an interactive profile app that allows you to cre
 ## Table of Contents
 
 - [Project Description](#project-description)
-- [Plan on Improving the Project](#plan-on-improving-the-project)
 - [Project Features](#project-features)
+- [Plan on Improving the Project](#plan-on-improving-the-project)
 - [Screenshots](#screenshots)
 - [Live Demo](#live-demo)
 - [Project Demo](#project-demo)
