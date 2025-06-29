@@ -14,7 +14,7 @@ The project, named "Spots," is an interactive profile app that allows users to c
 
 ## Project Description
 
-This project was completed as part of the Software Engineering program at TripleTen. It was developed using HTML and CSS, following a design breif from Figma. Spots allows users to add, delete, like cards, and edit profile. It's a great app for anyone who wants to design their profiles.
+This project was completed as part of the Software Engineering program at TripleTen. It was developed using HTML and CSS, following a design brief from Figma. Spots allow users to add, delete, like cards, and edit profile. It's a great app for anyone who wants to design their profile.
 
 ### Project Features
 
@@ -63,11 +63,12 @@ To run the project locally:
 
 1. Clone the repository:
 
+   ```bash
    git clone https://github.com/samjamhas10/se_project_spots.git
+   ```
 
 2. Navigate to project directory:
 
-    cs se_project_spots
+   cd se_project_spots
 
 3. Open the index.html file in your browser
-
