@@ -11,18 +11,17 @@ The project, named "Spots," is an interactive profile app that allows you to cre
 - [Live Demo](#live-demo)
 - [Project Demo](#project-demo)
 
-## Description
+## Project Description
 
 This project was completed as part of the Software Engineering program at TripleTen. It was developed using HTML and CSS, following a design brief from Figma.
 
-### Project features
+### Project Features
 
 - Figma
 - HTML
 - CSS
 - Responsive Design
 - Flexbox
-- Positioning
 - Flat BEM File Structure
 - Media Query
 
@@ -60,6 +59,6 @@ https://www.loom.com/share/abb517ce18e94cc28e7db3f33cb54c29
 To run the project locally:
 
 1. Clone the repository:
-   ```bash
+   bash
    git clone https://github.com/samjamhas10/se_project_spots.git
-   ```
+   
