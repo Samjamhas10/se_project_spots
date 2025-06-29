@@ -62,5 +62,12 @@ https://www.loom.com/share/abb517ce18e94cc28e7db3f33cb54c29
 To run the project locally:
 
 1. Clone the repository:
-   bash
+
    git clone https://github.com/samjamhas10/se_project_spots.git
+
+2. Navigate to project directory:
+
+    cs se_project_spots
+
+3. Open the index.html file in your browser
+
