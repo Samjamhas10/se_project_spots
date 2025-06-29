@@ -25,7 +25,6 @@ This project was completed as part of the Software Engineering program at Triple
 - Positioning
 - Flat BEM File Structure
 - Media Query
-- Webpack
 
 ## Plan on improving the project
 
@@ -39,16 +38,18 @@ This project was completed as part of the Software Engineering program at Triple
 ![Profile Screenshot](profile-page.png)
 
 ## Edit Mode
+
 ![Edit Screenshot](edit-mode.png)
 
 ## View Mode
+
 ![View Screenshot](view-mode.png)
 
 ## Live Demo
 
 - This webpage is deployed to github pages:
 
-Deployment link: https://samjamhas10.github.io/se_project_spots/
+Deployment link: https://Samjamhas10.github.io/se_project_spots
 
 ## Project Demo
 
