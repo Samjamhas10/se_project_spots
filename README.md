@@ -1,6 +1,6 @@
 # Spots
 
-The project, named "Spots," is an interactive profile app that allows you to create and customize your user profile.
+The project, named "Spots," is an interactive profile app that allows you to create and customize your user profile. 
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ The project, named "Spots," is an interactive profile app that allows you to cre
 
 ## Project Description
 
-This project was completed as part of the Software Engineering program at TripleTen. It was developed using HTML and CSS, following a design brief from Figma.
+This project was completed as part of the Software Engineering program at TripleTen. It was developed using HTML and CSS, following a design brief from Figma. 
 
 ### Project Features
 
