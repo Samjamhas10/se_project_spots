@@ -64,13 +64,13 @@ This design is responsive, making it user-friendly on different devices.
 
 Deployment link: https://Samjamhas10.github.io/se_project_spots
 
-## Project Demo 1 - Original Version
+## Project Demo 1
 
-- A walkthrough of the original version of the spots project. Focuses on the coding process and experience as a programmer.
+- A walkthrough of the original version of the spots project, focusing on the coding process and programming experience.
 
 https://www.loom.com/share/abb517ce18e94cc28e7db3f33cb54c29
 
-## Project Demo 2 - Updated Version
+## Project Demo 2
 
 - This updated version showcases the newest features and personalization options
 
