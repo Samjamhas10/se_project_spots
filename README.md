@@ -72,7 +72,9 @@ https://www.loom.com/share/abb517ce18e94cc28e7db3f33cb54c29
 
 ## Project Demo 2
 
-- This updated version showcases the newest features and personalization options
+- This updated version showcases the newest features and personalization options.
+
+https://www.loom.com/share/1e081ba636944f1f9818f6e1c19398c7?sid=889acf63-9500-45f5-ba7e-96c0a61fafa8
 
 ## Deployment Instructions
 
