@@ -24,7 +24,6 @@
       <main class="content">
         <section class="profile page__section">
           <div class="profile__avatar-container">
-            
             <button class="profile__avatar-btn"></button>
             <img
               src="<%=require('./images/avatar.jpg')%>"
@@ -114,6 +113,10 @@
                 class="modal__error"
               ></span>
             </label>
+            <div class="modal__color-section">
+              <span class="modal__label-title">Background Color</span>
+              <div class="modal__color-grid" id="modal-color-grid"></div>
+            </div>
             <button
               type="submit"
               class="modal__submit-btn modal__submit-btn_disabled"
