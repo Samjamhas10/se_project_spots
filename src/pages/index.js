@@ -5,6 +5,12 @@ import {
   resetValidation,
   disableButton,
 } from "../scripts/validation.js";
+import {
+  loadSavedColor,
+  colors,
+  applyColor,
+  getSavedColor,
+} from "../utils/colors.js";
 import Api from "../utils/Api.js";
 import { setButtonText } from "../utils/helpers.js";
 
@@ -285,6 +291,43 @@ profileEditButton.addEventListener("click", () => {
     settings
   );
 });
+
+// Load saved color on page load
+loadSavedColor();
+
+// Initialize color picker in modal
+function initializeColorPicker() {
+  const colorGrid = document.querySelector("#modal-color-grid");
+  const savedColorId = getSavedColor();
+
+  colors.forEach((color) => {
+    const option = document.createElement("button");
+    option.className = "modal__color-option";
+    option.style.backgroundColor = color.hex;
+    option.type = "button";
+    option.title = color.name;
+
+    if (savedColorId === color.id) {
+      option.classList.add("active");
+    }
+
+    option.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyColor(color.id);
+
+      // Update active state
+      document.querySelectorAll(".modal__color-option").forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      option.classList.add("active");
+    });
+
+    colorGrid.appendChild(option);
+  });
+}
+
+// Initialize on page load
+initializeColorPicker();
 
 // close modal overlay
 modals.forEach((modal) => {
