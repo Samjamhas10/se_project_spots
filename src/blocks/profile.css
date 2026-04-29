@@ -23,11 +23,21 @@
   position: absolute;
   visibility: hidden;
   width: 100%;
+  opacity: 0;
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
   cursor: pointer;
+}
+
+.profile__avatar-container:hover .profile__avatar-btn,
+.profile__avatar-btn:focus {
+  visibility: visible;
+  opacity: 1;
+  cursor: pointer;
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
 }
 
 .profile__avatar {
