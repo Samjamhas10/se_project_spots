@@ -34,7 +34,10 @@ This design is responsive, making it user-friendly on different devices.
 ## Plan for improving the project
 
 - Fix the lack of personalization by implementing a theme switcher to achieve night/day mode. allowing users to toggle between day and night modes for enhanced visual appearance and improved accessibility
-- Enhance customization options by adding the ability for users to select from a list of different background colors, giving users more control to personalize their profile section
+
+- Add search and filter functionality for cards
+
+- Add user profile customization options (avatar, bio updates)
 
 ## Screenshots
 
