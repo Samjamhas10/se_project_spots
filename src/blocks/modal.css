@@ -33,10 +33,6 @@
   margin-bottom: 32px;
 }
 
-.modal__label-title {
-  opacity: 0.7;
-}
-
 .modal_opened {
   visibility: visible;
   opacity: 1;
@@ -246,6 +242,7 @@
   margin-bottom: 8px;
   font-weight: 500;
   color: #212121;
+  opacity: 0.7;
 }
 
 .modal__color-grid {
